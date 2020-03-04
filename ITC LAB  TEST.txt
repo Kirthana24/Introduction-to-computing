@@ -1,0 +1,195 @@
+
+					Question 19
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char gender;
+    float bodyweight, wrist, waist, hip, forearm, B, bodyfat, bodyfatp, A1, A2, A3, A4, A5;
+
+    cout << "Input gender (m/f): ";
+    cin >> gender;
+
+
+    cout << "Enter body weight: ";
+    cin >> bodyweight;
+    cout << "Enter wrist measurement (at fullest point): ";
+    cin >> wrist;
+    cout << "Enter waist measurement (at navel): ";
+    cin >> waist;
+    cout << "Enter hip measurement (at fullest point): ";
+    cin >> hip;
+    cout << "Enter forearm measurement (at fullest point): ";
+    cin >> forearm;
+
+if (gender == 'f')
+{
+   A1 = (bodyweight * 0.723) + 8.987;
+}
+else
+{
+    A1 = (bodyweight * 1.082) + 94.42;
+}
+if (gender == 'f')    
+{ 
+    A2 = wrist / 3.140;
+}
+else
+{ 
+    A2 = wrist * 4.15;
+}   
+   A3 = waist * 0.157;
+    A4 = hip * 0.249;
+    A5 = forearm * 0.434;
+
+if (gender == 'f')
+{ 
+    B = A1 + A2 - A3 - A4 + A5;
+ }
+else
+{ 
+    B = A1 - A2;
+}
+    bodyfat = bodyweight - B;
+    bodyfatp =(bodyfat * 100) / bodyweight;
+
+    cout << "Your body fat is: " << bodyfat << endl
+<< "Body fat percentage: " << bodyfatp << "%";
+
+
+    return 0;
+}
+
+					QUESTION 18
+
+
+#include <iostream>
+
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	int x = 100;
+	int a,y;
+	double price[100], sqft[100], solution[100];
+	a = 1;
+	y = 0;
+
+	do
+	{
+		if (x!=0)
+		{
+			x++;
+		}
+		cout << "\tPlease enter your houses base price for it's model : $";
+		cin >> price[x];
+
+		cout << "\tPlease now enter that house's total sqft : ";
+		cin >> sqft[x];
+	
+		solution[x]=price[x] / sqft[x];
+	
+		system("pause");
+		system("cls");
+
+		cout << fixed;
+		cout << "\tYour value Per Sqaure foot for this house is " << setprecision(2) << solution[x] << endl;
+
+		system("pause");
+
+		cout << "\tWould You like to Enter another House?  (1 - Yes 0 - No) ";
+		cin >> a;
+
+		if (a = 0)
+		{
+			x = y;
+		}
+		system("pause");
+		system("cls");
+	} while (a != 0);
+	
+
+
+
+
+	system("pause");
+	return 0;
+} 
+
+
+						QUESTION 17
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+int main()
+{
+    int pictureLength, pictureWidth, pictureSquareInchSize, picturePerimiter, numberOfStars;
+    char frameType;
+    string frameColour;
+    float totalPrice;
+    
+    //values below represent cost per inch
+    const float FRAME_COLOURING_PRICE = 0.10;
+    const float REGULAR_FRAME_PRICE = 0.15;
+    const float FANCY_FRAME_PRICE = 0.25;
+    
+    //values below represent cost per square inch
+    const float CARDBOARD_PRICE = 0.02;
+    const float GLASS_PRICE = 0.07;
+    
+    const float STARS_PRICE = 0.35;
+    
+    cout << "Please enter the length & width of the picture: ";
+    cin >> pictureLength >> pictureWidth;
+    pictureSquareInchSize = pictureLength * pictureWidth;
+    picturePerimiter = (pictureLength * 2) + (pictureWidth * 2);
+    cout << "Please select your frame type (r for regular & f for fancy): ";
+    cin >> frameType;
+    
+    // Calculate cost of the frame type
+    switch (frameType) {
+        case 'r':
+        case 'R':
+            totalPrice = picturePerimiter * REGULAR_FRAME_PRICE;
+            break;
+        case 'f':
+        case 'F':
+            totalPrice = picturePerimiter * FANCY_FRAME_PRICE;
+            break;
+        default:
+            cout << "You entered an invalid fram type" << endl;
+            return 1;
+            break;
+    }
+    
+    cout << "Please enter which colour frame you would like (Note: white is default): ";
+    cin >> frameColour;
+    
+    // Only charge for colouring if they want something other than the default
+    if (frameColour != "white" || frameColour != "") {
+        totalPrice += FRAME_COLOURING_PRICE * picturePerimiter;
+    }
+    
+    cout << "Please enter the total number of stars you wish to have on your frame: ";
+    cin >> numberOfStars;
+    
+    if (numberOfStars > 0) {
+        totalPrice += numberOfStars * STARS_PRICE;
+    }
+    
+    //Calculate costs for glass and cardboard dependent on picture size
+    totalPrice += (GLASS_PRICE * pictureSquareInchSize) + (CARDBOARD_PRICE * pictureSquareInchSize);
+    
+    cout << fixed << showpoint << setprecision(2);
+    cout << "Your total bill for your frame comes to: $" << totalPrice << endl;
+    
+    return 0;
+}
